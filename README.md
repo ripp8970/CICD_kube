@@ -19,11 +19,11 @@ This repository demonstrates a basic Continuous Integration and Continuous Deplo
 
 ## Prerequisites
 
-* [Git](https://git-scm.com/)
-* [Docker](https://www.docker.com/get-started)
-* [Docker Hub](https://hub.docker.com/) account
-* [GitHub](https://github.com/) account
-* (Optional) [Minikube](https://minikube.sigs.k8s.io/docs/start/) for Kubernetes deployment
+* [Git]
+* [Docker]
+* [Docker Hub] account
+* [GitHub] account
+* (Optional) [Minikube] for Kubernetes deployment
 
 ## Project Structure
 
@@ -49,8 +49,8 @@ This repository demonstrates a basic Continuous Integration and Continuous Deplo
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <repository-directory>
+    git clone (https://github.com/ripp8970/CICD_kube.git)
+    cd CICD_kube
     ```
 2.  **Configure GitHub Secrets:**
     * Go to your repository's `Settings` -> `Secrets and variables` -> `Actions`.
@@ -77,11 +77,11 @@ Ensure Docker Desktop or Docker Engine is running.
 
 1.  **Pull the image** (replace `your-dockerhub-username`):
     ```bash
-    docker pull your-dockerhub-username/my-flask-app:latest
+    docker pull <your-dockerhub-username>/my-flask-app:latest
     ```
 2.  **Run the container:**
     ```bash
-    docker run -d -p 8080:5000 --name my-running-app your-dockerhub-username/my-flask-app:latest
+    docker run -d -p 8080:5000 --name my-running-app <your-dockerhub-username>/my-flask-app:latest
     ```
 3.  Access the app at `http://localhost:8080`.
 4.  **Stop and remove:**
@@ -96,35 +96,7 @@ Ensure Docker Desktop or Docker Engine is running.
     ```bash
     minikube start
     ```
-2.  **Create Kubernetes Resources:** Create `deployment.yaml` and `service.yaml` files as described in the [CI/CD Pipeline Guide](link-to-guide-or-keep-inline-if-preferred). **Remember to replace `your-dockerhub-username` in `deployment.yaml`**.
-    * Example `deployment.yaml` (condensed):
-        ```yaml
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: my-flask-app-deployment
-        spec:
-          replicas: 1
-          selector: { matchLabels: { app: my-flask-app } }
-          template:
-            metadata: { labels: { app: my-flask-app } }
-            spec:
-              containers:
-              - name: my-flask-container
-                image: your-dockerhub-username/my-flask-app:latest # <-- UPDATE THIS
-                ports: [{ containerPort: 5000 }]
-        ```
-    * Example `service.yaml` (condensed):
-        ```yaml
-        apiVersion: v1
-        kind: Service
-        metadata:
-          name: my-flask-app-service
-        spec:
-          type: NodePort
-          selector: { app: my-flask-app }
-          ports: [{ port: 5000, targetPort: 5000 }]
-        ```
+2.  **Create Kubernetes Resources:** Create `deployment.yaml` and `service.yaml` files(Already created). **Remember to replace `your-dockerhub-username` in `deployment.yaml`**.
 3.  **Apply the configurations:**
     ```bash
     kubectl apply -f deployment.yaml
@@ -147,13 +119,12 @@ Ensure Docker Desktop or Docker Engine is running.
 * The CI/CD pipeline is defined in `.github/workflows/main.yml`.
 * It triggers on pushes to the `main` branch.
 * You can monitor workflow runs in the "Actions" tab of your GitHub repository.
-* The built Docker image is pushed to `https://hub.docker.com/r/your-dockerhub-username/my-flask-app`.
+* The built Docker image is pushed to `https://hub.docker.com/r/ripp8970/my-flask-app`.
 
 ## Deliverables Checklist
 
 * [ ] GitHub repository setup complete.
-* [ ] Docker image successfully pushed to Docker Hub (`your-dockerhub-username/my-flask-app`).
+* [ ] Docker image successfully pushed to Docker Hub (`ripp8970/my-flask-app`).
 * [ ] GitHub Actions workflow runs successfully.
 * [ ] Application deployed and accessible locally (via Docker or Minikube).
-* [ ] Screenshots of the running application included or linked.
 
