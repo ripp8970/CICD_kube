@@ -1,0 +1,20 @@
+# docker-compose.yml
+# Useful for local development and testing
+
+version: '3.8' # Specify docker-compose version
+
+services:
+  web:
+    # Build the image from the Dockerfile in the current directory (.)
+    build: .
+    # Map port 5000 on the host to port 5000 in the container
+    ports:
+      - "5001:5000" # Map host port 5001 to container port 5000 to avoid conflicts if 5000 is used locally
+    # Mount the current directory into the container's /app directory
+    # This allows live code changes without rebuilding the image during development
+    volumes:
+      - .:/app
+    # Set environment variables for the service
+    environment:
+      - FLASK_ENV=development # Enables debug mode, auto-reloading
+      - GREETING=Hello from Compose
