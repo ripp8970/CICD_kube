@@ -27,7 +27,24 @@ This repository demonstrates a basic Continuous Integration and Continuous Deplo
 
 ## Project Structure
 
-.├── .github/│   └── workflows/│       └── main.yml      # GitHub Actions CI/CD workflow├── app.py                # Simple Flask application├── Dockerfile            # Docker image build instructions├── docker-compose.yml    # Local development setup├── requirements.txt      # Python dependencies└── README.md             # This file
+.
+
+├── .github/
+
+│   └── workflows/
+
+│       └── main.yml      # GitHub Actions CI/CD workflow
+
+├── app.py                # Simple Flask application
+
+├── Dockerfile            # Docker image build instructions
+
+├── docker-compose.yml    # Local development setup
+
+├── requirements.txt      # Python dependencies
+
+└── README.md 
+
 ## Setup Instructions
 
 1.  **Clone the Repository:**
