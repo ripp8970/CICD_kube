@@ -1,0 +1,16 @@
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-flask-app-service
+spec:
+  # Expose the service on a static port on each node
+  # So that we can access it from outside the cluster
+  type: NodePort
+  selector:
+    app: my-flask-app # Selects pods with the label 'app: my-flask-app'
+  ports:
+    - protocol: TCP
+      port: 5000 # Service port within the cluster
+      targetPort: 5000 # Port on the Pod to forward traffic to
+      # nodePort: 30007 # Optional: specify a static NodePort (within 30000-32767 range)

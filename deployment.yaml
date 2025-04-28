@@ -1,0 +1,23 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-flask-app-deployment
+spec:
+  replicas: 1 # Run a single instance
+  selector:
+    matchLabels:
+      app: my-flask-app
+  template:
+    metadata:
+      labels:
+        app: my-flask-app
+    spec:
+      containers:
+      - name: my-flask-container
+        # Use the image pushed to Docker Hub
+        image: ripp8970/my-flask-app:latest
+        ports:
+        - containerPort: 5000 # The port the app listens on inside the container
+        imagePullPolicy: Always # Ensure it pulls the latest image
+
